@@ -14,13 +14,13 @@ export const signIn = (userId) => {
         type: SIGN_IN,
         payload: userId
     };
-}
+};
 
 export const signOut = () => {
     return {
         type: SIGN_OUT
     };
-}
+};
 
 export const createStream = formValues => async (dispatch, getState) => {
     const { userId } = getState().auth;
@@ -38,7 +38,7 @@ export const fetchStreams = () => async dispatch => {
         type: FETCH_STREAMS,
         payload: response.data,
     });
-}
+};
 
 export const fetchStream = id => async dispatch => {
     const response = await streams.get(`/streams/${id}`);
@@ -46,7 +46,7 @@ export const fetchStream = id => async dispatch => {
         type: FETCH_STREAM,
         payload: response.data,
     });
-}
+};
 
 export const deleteStream = id => async dispatch => {
     await streams.delete(`/streams/${id}`);
@@ -54,7 +54,8 @@ export const deleteStream = id => async dispatch => {
         type: DELETE_STREAM,
         payload: id,
     });
-}
+    history.push('/');
+};
 
 export const editStream = (id, formValues) => async dispatch => {
     const response = await streams.patch(`/streams/${id}`, formValues);
@@ -63,4 +64,4 @@ export const editStream = (id, formValues) => async dispatch => {
         payload: response.data,
     });
     history.push('/');
-}
+};
