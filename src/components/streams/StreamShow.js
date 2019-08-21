@@ -4,17 +4,27 @@ import { fetchStream } from "../../actions";
 
 export class StreamShow extends React.Component {
     componentDidMount() {
-        if (!this.stream) {
+        if (!this.props.stream) {
             this.props.fetchStream(this.props.match.params.id);
         }
     }
 
     render(){
-        return (
-            <div>
-                <div>Loading...</div>
-            </div>
-        )
+        if(!this.props.stream) {
+            return (
+                <div>
+                    <div>Loading...</div>
+                </div>
+            )
+        } else {
+            const { title, description} = this.props.stream;
+            return (
+                <div>
+                    <h1>{title}</h1>
+                    <h5>{description}</h5>
+                </div>
+            )
+        }
     }
 }
 
